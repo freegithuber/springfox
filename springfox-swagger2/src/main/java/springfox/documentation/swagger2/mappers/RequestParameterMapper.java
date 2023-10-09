@@ -78,6 +78,7 @@ public class RequestParameterMapper {
       paramSpecification.facetOfType(StringElementFacet.class)
           .ifPresent(sf -> finalParameter.setPattern(sf.getPattern()));
       parameter.setRequired(from.getRequired());
+      parameter.setReadOnly(from.getHidden()); // 将隐藏属性作为只读属性传递给前端
       parameter.getVendorExtensions()
           .putAll(VENDOR_EXTENSIONS_MAPPER.mapExtensions(from.getExtensions()));
       query.ifPresent(q -> maybeAddAllowableValuesToParameter((AbstractSerializableParameter) finalParameter, q));
